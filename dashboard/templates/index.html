@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>firewallproject Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">firewallproject</div>
+    <nav>
+      <a class="active" href="/">Dashboard</a>
+      <a href="/rules">Rules</a>
+      <a href="/logs">Logs</a>
+      <a href="/interfaces">Interfaces</a>
+      <a href="/live-mode">Live Mode</a>
+      <a href="/test">Test</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar">
+      <h1>Dashboard</h1>
+      <span class="badge {{ 'danger' if stats.live_mode else 'muted' }}">{{ stats.mode }}</span>
+    </header>
+    <section class="grid cards">
+      <article class="card"><span>Toplam Rule</span><strong>{{ stats.total_rules }}</strong></article>
+      <article class="card"><span>Blocked IP</span><strong>{{ stats.blocked_ip_count }}</strong></article>
+      <article class="card"><span>Active Rules</span><strong>{{ stats.active_rules }}</strong></article>
+      <article class="card"><span>Firewall Status</span><strong>{{ 'Live' if stats.live_mode else 'Simulation' }}</strong></article>
+    </section>
+    <section class="panel">
+      <div class="section-title">
+        <h2>Son Loglar</h2>
+        <a href="/logs">Tümünü Gör</a>
+      </div>
+      <pre class="logbox">{% for line in logs %}{{ line }}
+{% else %}Log yok.
+{% endfor %}</pre>
+    </section>
+    <section class="panel">
+      <h2>nftables Durumu</h2>
+      <p>Mode: <b>{{ status.mode }}</b> | Live Mode: <b>{{ status.live_mode }}</b> | nft return: <b>{{ status.nft_returncode }}</b></p>
+      {% if status.nft_error %}<p class="error">{{ status.nft_error }}</p>{% endif %}
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

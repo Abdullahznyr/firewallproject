@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rules</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">firewallproject</div>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a class="active" href="/rules">Rules</a>
+      <a href="/logs">Logs</a>
+      <a href="/interfaces">Interfaces</a>
+      <a href="/live-mode">Live Mode</a>
+      <a href="/test">Test</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar"><h1>Rule Management</h1><span class="badge muted">{{ rules.mode }}</span></header>
+    <section class="panel">
+      <h2>Yeni Kural</h2>
+      <form id="rule-form" class="form-row">
+        <select name="category">
+          <option value="ip_blacklist">IP Blacklist</option>
+          <option value="ip_whitelist">IP Whitelist</option>
+          <option value="domain_blacklist">Domain Blacklist</option>
+          <option value="domain_whitelist">Domain Whitelist</option>
+          <option value="url_blacklist">URL Blacklist</option>
+          <option value="blocked_ports">Blocked Port</option>
+          <option value="allowed_ports">Allowed Port</option>
+        </select>
+        <input name="value" placeholder="IP, domain, URL veya port" required>
+        <input name="description" placeholder="Açıklama">
+        <button type="submit">Ekle</button>
+      </form>
+      <p id="rule-message" class="message"></p>
+    </section>
+    <section class="panel">
+      <h2>Kurallar</h2>
+      {% for category, entries in rules.rules.items() %}
+      <h3>{{ category }}</h3>
+      <div class="table">
+        {% for entry in entries %}
+        <div class="row">
+          <span>{{ entry.value }}</span>
+          <span>{{ entry.description }}</span>
+          <button data-category="{{ category }}" data-value="{{ entry.value }}" data-enabled="{{ 'false' if entry.enabled else 'true' }}" class="toggle-rule">
+            {{ 'Disable' if entry.enabled else 'Enable' }}
+          </button>
+          <button data-category="{{ category }}" data-value="{{ entry.value }}" class="delete-rule danger-button">Delete</button>
+        </div>
+        {% else %}
+        <div class="row muted-row">Kayıt yok</div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

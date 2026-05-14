@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traffic Test</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">firewallproject</div>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a href="/rules">Rules</a>
+      <a href="/logs">Logs</a>
+      <a href="/interfaces">Interfaces</a>
+      <a href="/live-mode">Live Mode</a>
+      <a class="active" href="/test">Test</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar"><h1>Traffic Decision Test</h1><span class="badge muted">C Engine</span></header>
+    <section class="panel">
+      <form id="test-form" class="test-form">
+        <label>IP<input name="ip" placeholder="192.168.1.10"></label>
+        <label>URL<input name="url" placeholder="https://example.com/path"></label>
+        <label>Domain<input name="domain" placeholder="example.com"></label>
+        <label>Port<input name="port" placeholder="443"></label>
+        <label>Protocol
+          <select name="protocol">
+            <option value="">Auto</option>
+            <option value="http">HTTP</option>
+            <option value="https">HTTPS</option>
+          </select>
+        </label>
+        <button type="submit">Test Et</button>
+      </form>
+      <pre id="test-output" class="logbox">Henüz test çalışmadı.</pre>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

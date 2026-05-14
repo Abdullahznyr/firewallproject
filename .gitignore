@@ -1,0 +1,28 @@
+# Python
+backend-python/.venv/
+backend-python/__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# C build artifacts
+*.o
+core-c/firewallproject-core
+
+# Runtime logs and backups
+data/logs.txt
+data/audit.log
+data/backups/
+*.nft
+
+# Local environment
+.env
+.env.*
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db

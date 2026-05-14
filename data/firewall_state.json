@@ -1,0 +1,6 @@
+{
+  "nftables_applied": false,
+  "last_apply": null,
+  "last_rollback": null,
+  "last_error": null
+}

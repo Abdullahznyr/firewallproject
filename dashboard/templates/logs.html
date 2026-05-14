@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logs</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">firewallproject</div>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a href="/rules">Rules</a>
+      <a class="active" href="/logs">Logs</a>
+      <a href="/interfaces">Interfaces</a>
+      <a href="/live-mode">Live Mode</a>
+      <a href="/test">Test</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar"><h1>Logs</h1><button id="refresh-logs">Yenile</button></header>
+    <section class="panel">
+      <h2>Traffic Logs</h2>
+      <pre id="logs-output" class="logbox">{% for line in logs %}{{ line }}
+{% else %}Log yok.
+{% endfor %}</pre>
+    </section>
+    <section class="panel">
+      <h2>Audit Log</h2>
+      <pre class="logbox">{% for line in audit_logs %}{{ line }}
+{% else %}Audit log yok.
+{% endfor %}</pre>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

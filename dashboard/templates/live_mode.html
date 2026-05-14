@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Mode</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">firewallproject</div>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a href="/rules">Rules</a>
+      <a href="/logs">Logs</a>
+      <a href="/interfaces">Interfaces</a>
+      <a class="active" href="/live-mode">Live Mode</a>
+      <a href="/test">Test</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar"><h1>Live Mode</h1><span class="badge {{ 'danger' if rules.live_mode else 'muted' }}">{{ rules.mode }}</span></header>
+    <section class="panel">
+      <h2>Mode Control</h2>
+      <p>Simulation mode nftables komutlarını dry-run olarak yürütür. Live mode gerçek sistem kurallarına müdahale eder ve root yetkisi gerektirir.</p>
+      <div class="actions">
+        <button id="simulation-mode">Simulation Mode</button>
+        <button id="live-mode" class="danger-button">Live Mode</button>
+        <button id="apply-rules">Apply Rules</button>
+        <button id="rollback-rules">Rollback</button>
+        <button id="emergency-reset" class="danger-button">Emergency Reset</button>
+      </div>
+      <pre id="live-output" class="logbox">Hazır.</pre>
+    </section>
+    <section class="panel">
+      <h2>State</h2>
+      <pre class="logbox">{{ status | tojson(indent=2) }}</pre>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

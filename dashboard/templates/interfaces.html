@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interfaces</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">firewallproject</div>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a href="/rules">Rules</a>
+      <a href="/logs">Logs</a>
+      <a class="active" href="/interfaces">Interfaces</a>
+      <a href="/live-mode">Live Mode</a>
+      <a href="/test">Test</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar"><h1>Network Interfaces</h1><span class="badge muted">Linux</span></header>
+    <section class="panel">
+      <div class="table">
+        {% for iface in interfaces %}
+        <div class="row"><span>{{ iface.name }}</span><span>{{ 'loopback' if iface.loopback else 'network' }}</span></div>
+        {% else %}
+        <div class="row">Interface bulunamadı.</div>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="panel">
+      <h2>nftables</h2>
+      <pre class="logbox">{{ status | tojson(indent=2) }}</pre>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

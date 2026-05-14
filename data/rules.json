@@ -1,0 +1,14 @@
+{
+  "mode": "simulation",
+  "live_mode": false,
+  "default_action": "ALLOW",
+  "rules": {
+    "ip_blacklist": [],
+    "ip_whitelist": [],
+    "domain_blacklist": [],
+    "domain_whitelist": [],
+    "url_blacklist": [],
+    "blocked_ports": [],
+    "allowed_ports": []
+  }
+}
